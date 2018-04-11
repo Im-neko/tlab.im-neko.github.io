@@ -1,0 +1,170 @@
+User:
+{
+  "idToken": ["klfngoeajbkngjlreaw"],
+  "display_name": "neko",
+  "user_profile": {
+    "intro_msg": "Hello World",
+    "link": "https://home.im-neko.net",
+    "background": "南多摩中等教育学校卒業",
+    "icon": "https://im-neko.net/icon",
+    "cover": "https://im-neko.net/cover",
+    "birth": 1234456789,
+    "email": "neko@im-neko.net",
+    "name": "yuki ideta",
+    "gender": 1,
+    "status": 1,
+    "pub_flag": true
+  },
+  "celeb_info": {
+    "group": "zoo",
+    "category": "58fb4bdf7392d776ef8ca19b",
+    "pickup": [
+      1,
+      2
+    ],
+    "p_id": "58fb4bdf7392d776ef8ca19b"
+  },
+  "notification": [
+    1,
+    3
+  ],
+  "name_card": [
+    "https://im-neko.net/name_card1",
+    "https://im-neko.net/name_card2"
+  ],
+  "id_image": [
+    "https://im-neko.net/id_image1",
+    "https://im-neko.net/id_image2"
+  ],
+  "id_flag": false,
+  "address": {
+    "name": {
+      "family_name": "Ideta",
+      "middle_name": "nyan",
+      "given_name": "Yuki"
+    },
+    "eng_name": {
+      "eng_family_name": "ideta",
+      "eng_middle_name": "nyann",
+      "eng_given_name": "Yuhki"
+    },
+    "phone_number": "08012345678",
+    "zip_code": [
+      "192",
+      "0021"
+    ],
+    "country": 81,
+    "prefecture": "Tokyo",
+    "ctiy": "Hachiouji",
+    "streat_num": "maruyama26-6",
+    "building": "nekohome"
+  },
+  "createdAt": 1434435234,
+  "updatedAt": 1534543643,
+  "deleted": false
+}
+
+areas:
+{
+  {
+    "area_code": 1,
+    "area_name": {
+      "ja": "アフリカ",
+      "en": "Africa",
+      "ch": "",
+      "fr": "",
+      "ge": ""
+    },
+    "countries":[]
+  },
+  {
+    "area_code": 2,
+    "area_name": {
+      "ja": "アメリカ",
+      "en": "America",
+      "ch": "",
+      "fr": "",
+      "ge": ""
+    },
+    "countries":[]
+  },
+  {
+    "area_code": 3,
+    "area_name": {
+      "ja": "南極",
+      "en": "Antarctica",
+      "ch": "",
+      "fr": "",
+      "ge": ""
+    },
+    "countries":[]
+  },
+  {
+    "area_code": 4,
+    "area_name": {
+      "ja": "アジア",
+      "en": "Asia",
+      "ch": "",
+      "fr": "",
+      "ge": ""
+    },
+    "countries":[]
+  },
+  {
+    "area_code": 5,
+    "area_name": {
+      "ja": "ヨーロッパ",
+      "en": "Europ",
+      "ch": "",
+      "fr": "",
+      "ge": ""
+    },
+    "countries":[]
+  },
+  {
+    "area_code": 6,
+    "area_name": {
+      "ja": "オセアニア",
+      "en": "Oceania",
+      "ch": "",
+      "fr": "",
+      "ge": ""
+    },
+    "countries":[]
+  }
+}
+
+country:
+{
+  "country_code": 81,
+  "area_code": 4,
+  "country_name": {
+    	"ja":"日本",
+    	"en":"Japan",
+    	"ch":"",
+    	"fr":"",
+    	"ge":""
+  }
+}
+
+auction:
+{
+  "userId": "5acb0373fe2fa30508e7c914",
+  "auction_code": 1,
+  "relation": [],
+  "text": "オークション１",
+  "images": {"1":"https://im-neko.net/image/test1"},
+  "areas": ["5acb03acd0482f050efada0e"],
+  "countries": ["5acb03c3125a18050d98605b"],
+  "tags": [],
+  "categories": [],
+  "celebId": [],
+  "initVal": 100
+}
+
+bid:
+{
+  "userId": "5acb0373fe2fa30508e7c914",
+  "auctionId":"5acc56be64b3f3129a7e5452",
+  "bid": 150
+}

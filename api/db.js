@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
-const mongoUri = 'mongodb://localhost:27018/devcdoor';
+const mongoUri = 'mongodb://localhost:27018/tlab';
 
 mongoose.Promise = global.Promise;
 
 // connect to mongo db
-mongoose.connect('mongodb://localhost:27018/devcdoor')
+mongoose.connect('mongodb://localhost:27018/tlab')
   .then(console.log('connected to mongoDB'));
 
 mongoose.connection.on('error', () => {

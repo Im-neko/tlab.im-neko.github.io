@@ -1,4 +1,2 @@
 exports.dbHost="127.0.0.1";
 exports.dbPort=27018;
-exports.jwtPubkey = "../keys/jwt.key.pub"
-exports.jwtPrikey = "../keys/jwt.key"

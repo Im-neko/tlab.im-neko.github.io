@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const common = require('../common');
 const conf = require('../conf');
 const productCtrl = require('../controllers/product.controller');
 

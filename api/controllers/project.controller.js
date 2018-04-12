@@ -1,4 +1,3 @@
-const common = require("../common");
 const conf = require("../conf");
 const projectModel = require("../models/project.model");
 const ObjectId = require("mongoose").Types.ObjectId;
@@ -43,11 +42,9 @@ exports.postProject = async (req, res) => {
     let body = req.body
     if (body.userId) body.userId = ObjectId(body.userId);
     if (body.relation) body.relation = body.relation.map((id) => {return ObjectId(id);});
-    if (body.areas) body.areas = body.areas.map((id) => {return ObjectId(id);});
     if (body.countries) body.countries = body.countries.map((id) => {return ObjectId(id);});
     if (body.tags) body.tags = body.tags.map((id) => {return ObjectId(id);});
     if (body.categories) body.categories = body.categories.map((id) => {return ObjectId(id);});
-    if (body.celebId) body.celebId = body.celebId.map((id) => {return ObjectId(id);});
     const date = new Date().getTime();
     body.createdAt = date;
     body.updatedAt = date;

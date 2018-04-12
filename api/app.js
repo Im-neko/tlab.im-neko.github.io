@@ -10,17 +10,11 @@ const APIError = require('./helpers/APIError');
 
 
 const conf = require("./conf");
-const common = require("./common");
 const teapot  = require("./routes/teapot.route");
 const login  = require("./routes/login.route");
 const users = require("./routes/user.route");
-const countries = require("./routes/country.route");
-const areas = require("./routes/area.route");
 const articles = require("./routes/article.route");
-const auctions = require("./routes/auction.route");
 const categories = require("./routes/category.route");
-const celebs = require("./routes/celeb.route");
-const interviews = require("./routes/interview.route");
 const products = require("./routes/product.route");
 const projects = require("./routes/project.route");
 const tags = require("./routes/tag.route");
@@ -71,16 +65,9 @@ app.use(
 );
 app.use("/teapot", teapot);
 app.use("/login", login);
-// jwt authorize
-// app.use(common.decodeJWT);
 app.use("/users", users);
-app.use("/celebs", celebs);
-app.use("/countries", countries);
-app.use("/areas", areas);
 app.use("/articles", articles);
-app.use("/auctions", auctions);
 app.use("/categories", categories);
-app.use("/interviews", interviews);
 app.use("/products", products);
 app.use("/projects", projects);
 app.use("/tags", tags);

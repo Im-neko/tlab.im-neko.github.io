@@ -7,9 +7,6 @@ const projectSchema = new Schema({
     type: mongoose.SchemaTypes.ObjectId,
     required: true
   },
-  project_code: {
-    type: Number
-  },
   relation: {
     // projectId
     type: [mongoose.SchemaTypes.ObjectId]
@@ -30,21 +27,10 @@ const projectSchema = new Schema({
       type: String
     }
   },
-  areas:{
-    type: [mongoose.SchemaTypes.ObjectId],
-    required: true
-  },
-  countries: {
-    type: [mongoose.SchemaTypes.ObjectId],
-    required: true
-  },
   tags: {
     type: [mongoose.SchemaTypes.ObjectId]
   },
   categories: {
-    type: [mongoose.SchemaTypes.ObjectId]
-  },
-  celebId: {
     type: [mongoose.SchemaTypes.ObjectId]
   },
   createdAt: {

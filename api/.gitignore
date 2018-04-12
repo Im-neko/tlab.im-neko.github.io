@@ -12,7 +12,6 @@ conf.js
 /data
 /react_sample/voicer_cms/node_module
 /react_sample/voicer_cms/build
-/.git
 
 
 # Created by https://www.gitignore.io/api/go,vim,node,linux,emacs,macos

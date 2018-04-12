@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var common = require('../common');
 var conf = require('../conf');
 const teaCtrl = require('../controllers/teapot.controller');
 

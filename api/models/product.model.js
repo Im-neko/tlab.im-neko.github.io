@@ -7,9 +7,6 @@ const productSchema = new Schema({
     type: mongoose.SchemaTypes.ObjectId,
     required: true
   },
-  product_code: {
-    type: Number
-  },
   relation: {
     // productId
     type: [mongoose.SchemaTypes.ObjectId]
@@ -30,21 +27,10 @@ const productSchema = new Schema({
       type: String
     }
   },
-  areas:{
-    type: [mongoose.SchemaTypes.ObjectId],
-    required: true
-  },
-  countries: {
-    type: [mongoose.SchemaTypes.ObjectId],
-    required: true
-  },
   tags: {
     type: [mongoose.SchemaTypes.ObjectId]
   },
   categories: {
-    type: [mongoose.SchemaTypes.ObjectId]
-  },
-  celebId: {
     type: [mongoose.SchemaTypes.ObjectId]
   },
   createdAt: {

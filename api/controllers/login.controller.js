@@ -1,6 +1,5 @@
 const firebase = require('firebase-admin')
 
-const common = require('../common');
 const conf = require('../conf');
 
 exports.login = async (req, res) => {

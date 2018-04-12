@@ -24,6 +24,6 @@ Authorizing with slack OAuth API.
 
 
 何かもし作った時は自分の名前を付けてブランチ切ってmasterにプルリク出してくださると助かります。
-If you make any Shintyoku, please create your branch and pull request.
+If you make any Shintyoku, please create your branch with your name and pull request.
 
 branch example) neko/dev-portal

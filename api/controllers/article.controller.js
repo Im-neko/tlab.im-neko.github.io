@@ -3,7 +3,7 @@ const articleModel = require("../models/article.model");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 
-exports.getArticles = async (req, res) => {
+exports.getArticles = async (req, res) => { // {{{
   let lang = req.query.lang || "ja";
   articleModel.find({}, async (err, result) => {
     if (err) {res.status(500).json({"error": "InternalServerError"}); return;}
@@ -17,9 +17,9 @@ exports.getArticles = async (req, res) => {
     console.error(err);
     res.status(500).json({"error": "DBError"});
   });
-}
+} // }}}
 
-exports.getArticleById = async (req, res) => {
+exports.getArticleById = async (req, res) => { // {{{
   let lang = req.query.lang || "all";
   let articleId = req.params.id;
   console.log(articleId);
@@ -36,9 +36,9 @@ exports.getArticleById = async (req, res) => {
     console.error(err);
     res.status(500).json({"error": "DBError"});
   });
-}
+} // }}}
 
-exports.postArticle = async (req, res) => {
+exports.postArticle = async (req, res) => { // {{{
     let body = req.body
     if (body.userId) body.userId = ObjectId(body.userId);
     if (body.relation) body.relation = body.relation.map((id) => {return ObjectId(id);});
@@ -64,4 +64,4 @@ exports.postArticle = async (req, res) => {
             res.status(400).json({"error": "cannot create"});
         }
     });
-}
+} // }}}

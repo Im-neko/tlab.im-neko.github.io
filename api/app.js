@@ -34,7 +34,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 
-app.use(function(req, res, next) {
+app.use(function(req, res, next) { // {{{
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS");
   res.header("Access-Control-Allow-Headers", " x-access-token, Origin, X-Requested-With, Content-Type, Accept");
@@ -43,9 +43,9 @@ app.use(function(req, res, next) {
   }else{
     next();
   }
-});
+}); // }}}
 app.use(
-  (req, res, next) =>{
+  (req, res, next) =>{ // {{{
     console.log("body, query", req.body, req.query);
     if("json" in req.query){
       try{
@@ -61,7 +61,7 @@ app.use(
     }else{
       next();
     }
-  }
+  } // }}}
 );
 app.use("/teapot", teapot);
 app.use("/login", login);
@@ -76,7 +76,7 @@ app.get("/pubkey/", (req, res, next) =>{
   res.send(common.pubkey());
 });
 
-app.use((err, req, res, next) => {
+app.use((err, req, res, next) => { // {{{
   console.log(err)
   if (err instanceof expressValidation.ValidationError) {
     // validation error contains errors which is an array of error each containing message[]
@@ -88,7 +88,7 @@ app.use((err, req, res, next) => {
     return next(apiError);
   }
   return next(err);
-});
+}); // }}}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

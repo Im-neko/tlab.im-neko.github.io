@@ -3,7 +3,7 @@ const categoryModel = require("../models/category.model");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 
-exports.getCategories = async (req, res) => {
+exports.getCategories = async (req, res) => { // {{{
   let lang = req.query.lang || "ja";
   categoryModel.find({}, async (err, result) => {
     if (err) {res.status(500).json({"error": "InternalServerError"}); return;}
@@ -17,9 +17,9 @@ exports.getCategories = async (req, res) => {
     console.error(err);
     res.status(500).json({"error": "DBError"});
   });
-}
+} // }}}
 
-exports.getCategoryById = async (req, res) => {
+exports.getCategoryById = async (req, res) => { // {{{
   let lang = req.query.lang || "all";
   let categoryId = req.params.id;
   console.log(categoryId);
@@ -36,9 +36,9 @@ exports.getCategoryById = async (req, res) => {
     console.error(err);
     res.status(500).json({"error": "DBError"});
   });
-}
+} // }}}
 
-exports.postCategory = async (req, res) => {
+exports.postCategory = async (req, res) => { // {{{
     let body = req.body;
     console.log(body);
     const category = new categoryModel(body);
@@ -57,4 +57,4 @@ exports.postCategory = async (req, res) => {
             res.status(400).json({"error": "cannot create"});
         }
     });
-}
+} // }}}

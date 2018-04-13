@@ -2,7 +2,7 @@ const firebase = require('firebase-admin')
 
 const conf = require('../conf');
 
-exports.login = async (req, res) => {
+exports.login = async (req, res) => { // {{{
   if (typeof(req.body.idToken) !== 'string') return res.status(403).json({'error': 'Invalid Token'});
   const idToken = req.body.idToken;
   console.log(idToken);
@@ -20,4 +20,4 @@ exports.login = async (req, res) => {
       console.log(error);
       res.status(500).json({'error': 'Internal Server Error'});
     });
-}
+} // }}}

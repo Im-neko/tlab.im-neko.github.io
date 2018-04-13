@@ -3,7 +3,7 @@ const userModel = require("../models/user.model");
 const ObjectId = require('mongoose').Types.ObjectId;
 
 
-exports.getUsers = async (req, res) => {
+exports.getUsers = async (req, res) => { // {{{
   const idToken= req.params.id;
   userModel.find({deleted: false}, async (err, result) => {
     if (err) {res.status(500).json({'error': 'InternalServerError'}); return;}
@@ -18,9 +18,9 @@ exports.getUsers = async (req, res) => {
     console.error(err);
     res.status(500).json({'error': 'DBError'});
   });
-}
+} // }}}
 
-exports.getUserById = async (req, res) => {
+exports.getUserById = async (req, res) => { // {{{
   const idToken = req.params.id;
   userModel.findOne({idToken: idToken, deleted: false}, async (err, result) => {
     if (err) {res.status(500).json({'error': 'InternalServerError'}); return;}
@@ -35,9 +35,9 @@ exports.getUserById = async (req, res) => {
     console.error(err);
     res.status(500).json({'error': 'DBError'});
   });
-}
+} // }}}
 
-exports.postUser = async (req, res) => {
+exports.postUser = async (req, res) => { // {{{
   let body = req.body;
   const date = new Date().getTime();
   body.createdAt = date;
@@ -56,4 +56,4 @@ exports.postUser = async (req, res) => {
       res.status(400).json({'error': 'cannot create'});
     }
   });
-}
+} // }}}

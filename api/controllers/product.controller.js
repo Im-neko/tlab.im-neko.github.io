@@ -3,7 +3,7 @@ const productModel = require("../models/product.model");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 
-exports.getProducts = async (req, res) => {
+exports.getProducts = async (req, res) => { // {{{
   let lang = req.query.lang || "ja";
   productModel.find({}, async (err, result) => {
     if (err) {res.status(500).json({"error": "InternalServerError"}); return;}
@@ -17,9 +17,9 @@ exports.getProducts = async (req, res) => {
     console.error(err);
     res.status(500).json({"error": "DBError"});
   });
-}
+} // }}}
 
-exports.getProductById = async (req, res) => {
+exports.getProductById = async (req, res) => { // {{{
   let lang = req.query.lang || "all";
   let productId = req.params.id;
   console.log(productId);
@@ -36,9 +36,9 @@ exports.getProductById = async (req, res) => {
     console.error(err);
     res.status(500).json({"error": "DBError"});
   });
-}
+} // }}}
 
-exports.postProduct = async (req, res) => {
+exports.postProduct = async (req, res) => { // {{{
     let body = req.body
     if (body.userId) body.userId = ObjectId(body.userId);
     if (body.relation) body.relation = body.relation.map((id) => {return ObjectId(id);});
@@ -64,4 +64,4 @@ exports.postProduct = async (req, res) => {
             res.status(400).json({"error": "cannot create"});
         }
     });
-}
+} // }}}

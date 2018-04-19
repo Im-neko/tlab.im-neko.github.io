@@ -19,7 +19,7 @@ exports.getProjects = async (req, res) => { // {{{
   });
 } // }}}
 
-exports.getProjectById = async (req, res) =>  // {{{
+exports.getProjectById = async (req, res) => { // {{{
   let lang = req.query.lang || "all";
   let projectId = req.params.id;
   console.log(projectId);

@@ -8,10 +8,12 @@ keys
 /build
 conf.js
 .env
-/dist
-/data
-/react_sample/voicer_cms/node_module
-/react_sample/voicer_cms/build
+/fornt/dist
+/api/data
+/front/node_module
+/front/build
+/sample-react-project/node_module
+/sample-react-project/build
 /.git
 
 
@@ -214,4 +216,3 @@ Session.vim
 tags
 
 # End of https://www.gitignore.io/api/go,vim,node,linux,emacs,macos
-

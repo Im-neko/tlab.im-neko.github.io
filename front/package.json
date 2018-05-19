@@ -2,7 +2,7 @@
   "name": "front",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://im-neko.github.io/tlab-portal",
+  "homepage": "https://tlab.im-neko.net",
   "dependencies": {
     "@material-ui/core": "^1.0.0",
     "ajv": "^6.5.0",

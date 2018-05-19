@@ -8,8 +8,6 @@ keys
 /build
 conf.js
 .env
-/fornt/dist
-/api/data
 /front/node_module
 /front/build
 /sample-react-project/node_module

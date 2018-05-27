@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default class extends Component {
   render () {

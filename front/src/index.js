@@ -1,10 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Top from './page-component/Top';
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#B9F6CA',
+      main: '#20d9a8',
+      dark: '#1B5E20',
+      contrastText: '#fff',
+    },
+  },
+});
+
 const App = () => (
-  <MuiThemeProvider>
+  <MuiThemeProvider theme={theme}>
     <Top />
   </MuiThemeProvider>
 );

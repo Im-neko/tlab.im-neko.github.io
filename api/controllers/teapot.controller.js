@@ -9,5 +9,5 @@ exports.root = (req, res, next) => {
 
 exports.nyan = (req, res, next) => {
   console.log(req);
-  res.status(418).json({"message": req.query});
+  res.status(200).json({"message": 'nyan'});
 }

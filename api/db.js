@@ -5,7 +5,7 @@ const mongoUri = 'mongodb://localhost:27018/tlab';
 mongoose.Promise = global.Promise;
 
 // connect to mongo db
-mongoose.connect('mongodb://localhost:27018/tlab')
+mongoose.connect(mongoUri)
   .then(console.log('connected to mongoDB'));
 
 mongoose.connection.on('error', () => {

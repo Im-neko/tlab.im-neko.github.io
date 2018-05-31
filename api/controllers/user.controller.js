@@ -4,56 +4,46 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 
 exports.getUsers = async (req, res) => { // {{{
-  const idToken= req.params.id;
-  userModel.find({deleted: false}, async (err, result) => {
-    if (err) {res.status(500).json({'error': 'InternalServerError'}); return;}
-    if (result.length) {
-
-      res.json({'users': result});
-    } else {
-      console.error(result);
-      res.status(404).json({'error':'User not found'});
-    }
-  }).catch(err => {
-    console.error(err);
-    res.status(500).json({'error': 'DBError'});
-  });
+  try{
+    const limit = parseInt(req.query.limit, 10);
+    const page = parseInt(req.query.page, 10);
+    const data = await userModel.find({deleted: false})
+      .sort('-created')// 降順、最新順ソート
+      .skip((page - 1) * limit)
+      .limit(limit);
+    if (!data.length) {throw [404, 'no categories']}
+    res.json({message: 'success', data: {users: data}, error: null});
+  } catch (e) {
+    console.error(e);
+    res.status(e[0]||500).json({message: 'failed', data: null, error: ''+(e[1]||e)});
+  }
 } // }}}
 
 exports.getUserById = async (req, res) => { // {{{
-  const idToken = req.params.id;
-  userModel.findOne({idToken: idToken, deleted: false}, async (err, result) => {
-    if (err) {res.status(500).json({'error': 'InternalServerError'}); return;}
-    if (result) {
-      let user = await scrapeuser(result);
-      res.json({'user': user});
-    } else {
-      console.error(result);
-      res.status(404).json({'error': 'User not found'});
-    }
-  }).catch(err => {
-    console.error(err);
-    res.status(500).json({'error': 'DBError'});
-  });
+  try{
+    const idToken = req.params.id;
+    const data = await userModel.findOne({idToken: idToken, deleted: false});
+    if (!data) {throw [404, 'no category']}
+    res.json({message: 'success', data: {user: data}, error: null});
+  } catch (e) {
+    console.error(e);
+    res.status(e[0]||500).json({message: 'failed', data: null, error: ''+(e[1]||e)});
+  }
 } // }}}
 
 exports.postUser = async (req, res) => { // {{{
-  let body = req.body;
-  const date = new Date().getTime();
-  body.createdAt = date;
-  body.updatedAt = date;
-  const User = new userModel(body);
-  let result = await User.save((err, result) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({'error': 'cannot create'});
-    }
-
-    if (result){
-      res.json({'message': result});
-    } else {
-      console.error(result)
-      res.status(400).json({'error': 'cannot create'});
-    }
-  });
+  try{
+    const body = req.body;
+    const date = new Date().getTime();
+    body.created = date;
+    body.updated = date;
+    body.deleted = false;
+    const User = new userModel(body);
+    const result = await user.save();
+    if (!result) {throw [500, 'failed to post']}
+    res.json({message: 'success', data: null, error: null});
+  } catch (e) {
+    console.error(e);
+    res.status(e[0]||500).json({message: 'failed', data: null, error: ''+(e[1]||e)});
+  }
 } // }}}

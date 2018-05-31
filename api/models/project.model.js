@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 
 const projectSchema = new Schema({
+  teamId: {
+    type: mongoose.SchemaTypes.ObjectId,
+    required: true
+  },
   userId: {
     type: mongoose.SchemaTypes.ObjectId,
     required: true
@@ -33,11 +37,11 @@ const projectSchema = new Schema({
   categories: {
     type: [mongoose.SchemaTypes.ObjectId]
   },
-  createdAt: {
+  created: {
     type: Number,
     required: true
   },
-  updatedAt: {
+  updated: {
     type: Number,
     required: true
   }

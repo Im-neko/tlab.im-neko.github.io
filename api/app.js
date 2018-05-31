@@ -4,12 +4,13 @@ const favicon = require("serve-favicon");
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-const jwt = require("jsonwebtoken");
+
 const expressValidation = require('express-validation');
 const APIError = require('./helpers/APIError');
 
 
 const conf = require("./conf");
+const jwt = require("./jwt");
 const teapot  = require("./routes/teapot.route");
 const login  = require("./routes/login.route");
 const users = require("./routes/user.route");
@@ -63,17 +64,20 @@ app.use(
     }
   } // }}}
 );
-app.use("/teapot", teapot);
-app.use("/login", login);
-app.use("/users", users);
-app.use("/articles", articles);
-app.use("/categories", categories);
-app.use("/products", products);
-app.use("/projects", projects);
-app.use("/tags", tags);
 
-app.get("/pubkey/", (req, res, next) =>{
-  res.send(common.pubkey());
+// jwt authorize
+app.use(jwt.decodeJWT);
+app.use("/v1/teapot", teapot);
+app.use("/v1/login", login);
+app.use("/v1/users", users);
+app.use("/v1/articles", articles);
+app.use("/v1/categories", categories);
+app.use("/v1/products", products);
+app.use("/v1/projects", projects);
+app.use("/v1/tags", tags);
+
+app.get("/v1/pubkey", (req, res, next) =>{
+  res.send(jwt.pubkey());
 });
 
 app.use((err, req, res, next) => { // {{{

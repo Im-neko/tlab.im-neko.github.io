@@ -1,13 +1,13 @@
 const mongoose = require('../db');
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+const teamSchema = new Schema({
   idToken: {
     // slackからもらえるid
     type: [String],
     required: true,
   },
-  user: {
+  team: {
     display_name: {
       // 表示名
       type: String,
@@ -21,7 +21,7 @@ const userSchema = new Schema({
       type: String
     }
   },
-  teamIds: {
+  users: {
     type: [mongoose.SchemaTypes.ObjectId],
     required: true
   },
@@ -41,4 +41,4 @@ const userSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Team', teamSchema);

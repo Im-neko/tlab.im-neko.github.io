@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 
 const articleSchema = new Schema({
+  teamId: {
+    type: mongoose.SchemaTypes.ObjectId,
+    required: true
+  },
   userId: {
     type: mongoose.SchemaTypes.ObjectId,
     required: true
@@ -33,13 +37,16 @@ const articleSchema = new Schema({
   categories: {
     type: [mongoose.SchemaTypes.ObjectId]
   },
-  createdAt: {
+  created: {
     type: Number,
     required: true
   },
-  updatedAt: {
+  updated: {
     type: Number,
     required: true
+  },
+  deleted: {
+    type: Boolean
   }
 },{ minimize: false });
 

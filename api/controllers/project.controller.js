@@ -3,6 +3,8 @@ const projectModel = require("../models/project.model");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 
+// not yet
+
 exports.getProjects = async (req, res) => { // {{{
   let lang = req.query.lang || "ja";
   projectModel.find({}, async (err, result) => {
@@ -46,8 +48,8 @@ exports.postProject = async (req, res) => { // {{{
     if (body.tags) body.tags = body.tags.map((id) => {return ObjectId(id);});
     if (body.categories) body.categories = body.categories.map((id) => {return ObjectId(id);});
     const date = new Date().getTime();
-    body.createdAt = date;
-    body.updatedAt = date;
+    body.created = date;
+    body.updated = date;
     const project = new projectModel(body);
     let result = await project.save((err, result) => {
         if (err) {

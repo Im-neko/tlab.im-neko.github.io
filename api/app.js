@@ -13,12 +13,13 @@ const conf = require("./conf");
 const jwt = require("./jwt");
 const teapot  = require("./routes/teapot.route");
 const login  = require("./routes/login.route");
+const tags = require("./routes/team.route");
 const users = require("./routes/user.route");
 const articles = require("./routes/article.route");
 const categories = require("./routes/category.route");
 const products = require("./routes/product.route");
 const projects = require("./routes/project.route");
-const tags = require("./routes/tag.route");
+const auth = require("./routes/auth.route");
 
 const app = express();
 
@@ -75,6 +76,7 @@ app.use("/v1/categories", categories);
 app.use("/v1/products", products);
 app.use("/v1/projects", projects);
 app.use("/v1/tags", tags);
+app.use("/v1/auth", auth);
 
 app.get("/v1/pubkey", (req, res, next) =>{
   res.send(jwt.pubkey());

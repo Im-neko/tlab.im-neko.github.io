@@ -11,7 +11,7 @@ exports.getUsers = async (req, res) => { // {{{
       .sort('-created')// 降順、最新順ソート
       .skip((page - 1) * limit)
       .limit(limit);
-    if (!data.length) {throw [404, 'no categories']}
+    if (!data.length) {throw [404, 'no users']}
     res.json({message: 'success', data: {users: data}, error: null});
   } catch (e) {
     console.error(e);
@@ -23,7 +23,7 @@ exports.getUserById = async (req, res) => { // {{{
   try{
     const idToken = req.params.id;
     const data = await userModel.findOne({idToken: idToken, deleted: false});
-    if (!data) {throw [404, 'no category']}
+    if (!data) {throw [404, 'no user']}
     res.json({message: 'success', data: {user: data}, error: null});
   } catch (e) {
     console.error(e);

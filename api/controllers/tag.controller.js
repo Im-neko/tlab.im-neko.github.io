@@ -11,7 +11,7 @@ exports.getTags = async (req, res) => { // {{{
       .sort('-created')// 降順、最新順ソート
       .skip((page - 1) * limit)
       .limit(limit);
-    if (!data.length) {throw [404, 'no articles']}
+    if (!data.length) {throw [404, 'no tags']}
     res.json({message: 'success', data: {tags: data}, error: null});
   } catch(e) {
     console.error(e);
@@ -23,7 +23,7 @@ exports.getTagById = async (req, res) => { // {{{
   try{
     const tagId = req.params.id;
     const data = await tagModel.findOne({_id: ObjectId(tagId)});
-    if (!data) {throw [404, 'no articles']}
+    if (!data) {throw [404, 'no tag']}
     res.json({message: 'success', data: {tag: data}, error: null});
   } catch (e) {
     console.error(e);

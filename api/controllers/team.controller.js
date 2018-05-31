@@ -11,7 +11,7 @@ exports.getTeams = async (req, res) => { // {{{
       .sort('-created')// 降順、最新順ソート
       .skip((page - 1) * limit)
       .limit(limit);
-    if (!data.length) {throw [404, 'no categories']}
+    if (!data.length) {throw [404, 'no teams']}
     res.json({message: 'success', data: {teams: data}, error: null});
   } catch (e) {
     console.error(e);
@@ -23,7 +23,7 @@ exports.getTeamById = async (req, res) => { // {{{
   try{
     const idToken = req.params.id;
     const data = await teamModel.findOne({idToken: idToken, deleted: false});
-    if (!data) {throw [404, 'no category']}
+    if (!data) {throw [404, 'no team']}
     res.json({message: 'success', data: {team: data}, error: null});
   } catch (e) {
     console.error(e);

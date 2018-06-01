@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { HashRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import TimeLine from "./TimeLine";
 import Login from "./Login";
@@ -13,7 +13,7 @@ import Header from "../common-component/Header";
 class Top extends Component {
 render () {
     return (
-      <HashRouter>
+      <BrowserRouter>
         <div>
           <Header />
           <center>
@@ -24,7 +24,7 @@ render () {
           <Footer />
           </center>
         </div>
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }

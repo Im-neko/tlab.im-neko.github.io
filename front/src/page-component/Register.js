@@ -20,6 +20,7 @@ export default class extends Component {
   componentWillMount () {
     let query = qs.parse(this.props.location.search.substr(1));
     this.setState({query: query});
+    console.log(env)
   }
 
   async getDatas () {
@@ -46,12 +47,12 @@ export default class extends Component {
 
   render () {
     return (
-      <div className="login_container">
+      <div className="auth_container">
         <Button
           style={style}
           variant="raised"
           color="primary"
-          href='https://slack.com/oauth/authorize?client_id=229852700674.372955700017&redirect_uri=http://localhost:3001/auth&scope=identity.avatar,identity.basic,identity.team'
+          href={env.slack_uri_1}
           >
             slackで認証する
         </Button>

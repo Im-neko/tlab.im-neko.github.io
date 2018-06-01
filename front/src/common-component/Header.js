@@ -48,12 +48,12 @@ class MenuAppBar extends Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static" color="whiht" style={{boxShadow: "none"}} >
+        <AppBar position="static" color="secondary" style={{boxShadow: "none"}} >
           <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Top">
+            <IconButton className={classes.menuButton} color="primary" aria-label="Top">
             <font color="#20d9a8">■</font>
             </IconButton>
-            <Typography variant="title" color="inherit" className={classes.flex}>
+            <Typography variant="title" className={classes.flex}>
               TakedaLab.
             </Typography>
             <TextField
@@ -78,7 +78,7 @@ class MenuAppBar extends Component {
                   aria-owns={open ? 'menu-appbar' : null}
                   aria-haspopup="true"
                   onClick={this.handleMenu}
-                  color="black"
+                  color="default"
                 >
                   <AccountCircle />
                 </IconButton>

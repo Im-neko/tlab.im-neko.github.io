@@ -1,6 +1,10 @@
-import React, { Component } from "react";
-//import axios from 'axios';
+import React, {Component} from 'react';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Avatar from '@material-ui/core/Avatar';
 
+import AuthService from "../service/AuthService";
 // import * as env from "../environment/environment";
 import Loader from "../common-component/Loader";
 
@@ -8,23 +12,18 @@ export default class extends Component {
   constructor(props) {
     super(props);
     this.state = {datas: [], loader: true}
+    this.auth = new AuthService()
   }
 
-  componentWillMount () {
-    /*
-    axios.get(env.timeline_url).then((res) => {
-      let data = res.data.data;
-      data.sort(function(a,b){
-        if(a.max_count > b.max_count) return -1;
-        if(a.max_count < b.max_count) return 1;
-        return 0;
-      });
-      this.setState({datas: list});
-      this.setState({loader: false});
-    });
-    */
-    console.log('pre load')
-    setTimeout((() => {this.setState({loader: false})}), 2000)
+  async componentWillMount () {
+    await this.getTimeLine();
+    this.setState({loader: false});
+  }
+
+  async getTimeLine() {
+    const path = 'timeline'
+    const res = await this.auth.get(path, {limit:10, page:1});
+    console.log(res)
   }
 
   render () {
@@ -35,10 +34,17 @@ export default class extends Component {
         </div>
       );
     } else {
+      let datas = [];
       return (
         <div className="timeline_container">
-          TimeLineをここに表示 <br />
-          * テスト用に2秒loadingを出してます
+        <List>
+          <ListItem>
+            <Avatar>
+              {this.state.datas.icon}
+            </Avatar>
+            <ListItemText primary={this.state.datas.title} secondary={this.state.datas.name} />
+          </ListItem>
+        </List>
         </div>
       );
     }

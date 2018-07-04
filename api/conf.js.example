@@ -1,2 +1,18 @@
-exports.dbHost="127.0.0.1";
-exports.dbPort=27018;
+if (process.env.NODE_ENV === 'development') {
+    console.log('dev mode');
+    exports.dbHost="127.0.0.1";
+    exports.dbPort=27018;
+    exports.jwtPubkey = "../keys/jwt.key.pub"
+    exports.jwtPrikey = "../keys/jwt.key"
+    exports.client_id = "";
+    exports.client_secret = "";
+  }else{
+    console.log('prod mode');
+    // 今はAPIサーバ建てて無いので一旦ダミー
+    exports.dbHost="127.0.0.1";
+    exports.dbPort=27018;
+    exports.jwtPubkey = "../keys/jwt.key.pub"
+    exports.jwtPrikey = "../keys/jwt.key"
+    exports.client_id = "";
+    exports.client_secret = "";
+  }

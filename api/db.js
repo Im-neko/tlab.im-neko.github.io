@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
+const conf = require('./conf');
+let mongoUri = '';
 
-const mongoUri = 'mongodb://localhost:27018/tlab';
+if (process.env.ENV === 'dev') {
+  mongoUri = 'mongodb://ssh.im-neko.net:27018/dev-tlab';
+} else {
+  mongoUri = 'mongodb://ssh.im-neko.net:27018/tlab';
+}
 
 mongoose.Promise = global.Promise;
 

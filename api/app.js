@@ -20,6 +20,8 @@ const categories = require("./routes/category.route");
 const products = require("./routes/product.route");
 const projects = require("./routes/project.route");
 const auth = require("./routes/auth.route");
+const team = require("./routes/team.route");
+const timeline = require("./routes/timeline.route");
 
 const app = express();
 
@@ -68,15 +70,17 @@ app.use(
 
 // jwt authorize
 app.use(jwt.decodeJWT);
-app.use("/v1/teapot", teapot);
+app.use("/v1/auth", auth);
 app.use("/v1/login", login);
+app.use("/v1/teapot", teapot);
+app.use("/v1/teams", team);
 app.use("/v1/users", users);
 app.use("/v1/articles", articles);
 app.use("/v1/categories", categories);
 app.use("/v1/products", products);
 app.use("/v1/projects", projects);
 app.use("/v1/tags", tags);
-app.use("/v1/auth", auth);
+app.use("/v1/timeline", timeline);
 
 app.get("/v1/pubkey", (req, res, next) =>{
   res.send(jwt.pubkey());

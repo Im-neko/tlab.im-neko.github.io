@@ -11,6 +11,8 @@ import Menu from '@material-ui/core/Menu';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+import AuthService from "../service/AuthService";
+
 
 const styles = {
   root: {
@@ -24,16 +26,23 @@ const styles = {
     marginRight: 20,
   },
   searchField: {
-    marginRight: 200
+    marginRight: 20
+  },
+  icon: {
+    width: "48px",
+    height: "48px"
   }
 };
 
 class MenuAppBar extends Component {
-  state = {
-    anchorEl: null,
-  };
+  constructor(props) {
+    super(props)
+    this.state = {anchorEl: null, user_icon: null}
+    this.auth = new AuthService();
+  }
 
-  handleMenu = event => {
+
+  handleMenu = (event) => {
     this.setState({ anchorEl: event.currentTarget });
   };
 
@@ -41,69 +50,132 @@ class MenuAppBar extends Component {
     this.setState({ anchorEl: null });
   };
 
+
   render() {
     const { classes } = this.props;
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
-
-    return (
-      <div className={classes.root}>
-        <AppBar position="static" color="secondary" style={{boxShadow: "none"}} >
-          <Toolbar>
-            <IconButton className={classes.menuButton} color="primary" aria-label="Top">
-            <font color="#20d9a8">■</font>
-            </IconButton>
-            <Typography variant="title" className={classes.flex}>
-              TakedaLab.
-            </Typography>
-            <TextField
-              className={classes.searchField}
-              placeholder="Search"
-              InputProps={{
-               disableUnderline: true,
-              }}
-              InputLabelProps={{
-               shrink: true,
-               className: classes.bootstrapFormLabel,
-              }}
-            />
-              <div>
-                <Button
-                  variant="raised"
-                  color="primary">
-                    POST
-                </Button>
-                鐘
-                <IconButton
-                  aria-owns={open ? 'menu-appbar' : null}
-                  aria-haspopup="true"
-                  onClick={this.handleMenu}
-                  color="default"
-                >
-                  <AccountCircle />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  open={open}
-                  onClose={this.handleClose}
-                >
-                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                </Menu>
-              </div>
-          </Toolbar>
-        </AppBar>
-      </div>
-    );
+    if (this.auth.isLogin()){
+      const user = JSON.parse(localStorage.getItem('user'));
+      const user_icon = user.image_1024
+      return (
+        <div className={classes.root}>
+          <AppBar position="static" color="secondary" style={{boxShadow: "none"}} >
+            <Toolbar>
+              <IconButton className={classes.menuButton} color="primary" aria-label="Top">
+              <font color="#20d9a8">■</font>
+              </IconButton>
+              <Typography variant="title" className={classes.flex}>
+                TakedaLab.
+              </Typography>
+              <TextField
+                className={classes.searchField}
+                placeholder="Search"
+                InputProps={{
+                disableUnderline: true,
+                }}
+                InputLabelProps={{
+                shrink: true,
+                className: classes.bootstrapFormLabel,
+                }}
+              />
+                <div>
+                  <Button
+                    variant="raised"
+                    color="primary">
+                      POST
+                  </Button>
+                  鐘
+                  <IconButton
+                    aria-owns={open ? 'menu-appbar' : null}
+                    aria-haspopup="true"
+                    onClick={this.handleMenu}
+                    color="default"
+                  >
+                      <img src={user_icon} className={classes.icon} alt="user_icon" />
+                  </IconButton>
+                  <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    open={open}
+                    onClose={this.handleClose}
+                  >
+                    <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                    <MenuItem onClick={this.auth.logout}>Logout</MenuItem>
+                  </Menu>
+                </div>
+            </Toolbar>
+          </AppBar>
+        </div>
+      );
+    } else {
+      return (
+        <div className={classes.root}>
+          <AppBar position="static" color="secondary" style={{boxShadow: "none"}} >
+            <Toolbar>
+              <IconButton className={classes.menuButton} color="primary" aria-label="Top">
+              <font color="#20d9a8">■</font>
+              </IconButton>
+              <Typography variant="title" className={classes.flex}>
+                TakedaLab.
+              </Typography>
+              <TextField
+                className={classes.searchField}
+                placeholder="Search"
+                InputProps={{
+                disableUnderline: true,
+                }}
+                InputLabelProps={{
+                shrink: true,
+                className: classes.bootstrapFormLabel,
+                }}
+              />
+                <div>
+                  <Button
+                    variant="raised"
+                    color="primary">
+                      POST
+                  </Button>
+                  鐘
+                  <IconButton
+                    aria-owns={open ? 'menu-appbar' : null}
+                    aria-haspopup="true"
+                    onClick={this.handleMenu}
+                    color="default"
+                  >
+                    <AccountCircle />
+                  </IconButton>
+                  <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    open={open}
+                    onClose={this.handleClose}
+                  >
+                    <MenuItem onClick={this.auth.Login}>Login</MenuItem>
+                  </Menu>
+                </div>
+            </Toolbar>
+          </AppBar>
+        </div>
+      );
+    }
   }
 }
 

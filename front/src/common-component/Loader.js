@@ -6,7 +6,9 @@ export default class extends Component {
       if(this.props.isActive){
         return (
           <div>
-            <CircularProgress size={80}/>
+            <center>
+              <CircularProgress size={80}/>
+            </center>
           </div>
         );
       } else{

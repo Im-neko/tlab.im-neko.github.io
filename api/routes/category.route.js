@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const conf = require('../conf');
+const jwt = require('../jwt');
 const categoryCtrl = require('../controllers/category.controller');
 
-// router.use( common.checkJWT );
+router.use( jwt.checkJWT );
 router.get('/',　categoryCtrl.getCategories);
 
 router.get('/:id', categoryCtrl.getCategoryById);

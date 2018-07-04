@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const conf = require('../conf');
+const jwt = require('../jwt');
 const articleCtrl = require('../controllers/article.controller');
 
-// router.use( common.checkJWT );
+
+router.use( jwt.checkJWT );
 router.get('/',　articleCtrl.getArticles);
 
 router.get('/:id', articleCtrl.getArticleById);

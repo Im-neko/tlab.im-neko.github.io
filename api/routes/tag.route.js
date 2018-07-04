@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const conf = require('../conf');
+const jwt = require('../jwt');
 const tagCtrl = require('../controllers/tag.controller');
 
-// router.use( common.checkJWT );
+router.use( jwt.checkJWT );
 router.get('/',　tagCtrl.getTags);
 
 router.get('/:id', tagCtrl.getTagById);

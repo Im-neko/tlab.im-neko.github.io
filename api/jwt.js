@@ -6,7 +6,7 @@ const conf = require('./conf');
 
 
 exports.decodeJWT = (req, res, next) => {//{{{
-  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+  var token = req.body.jwtoken || req.query.jwtoken || req.headers['x-access-token'];
   if( !token ){
     next();
     return;
@@ -21,7 +21,7 @@ exports.decodeJWT = (req, res, next) => {//{{{
 };//}}}
 
 exports.checkJWT = (req, res, next) => {//{{{
-  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+  var token = req.body.jwtoken || req.query.jwtoken || req.headers['x-access-token'];
   if( !token ){
     return res.status(403).send( { error: 'No token provided.' } );
   }

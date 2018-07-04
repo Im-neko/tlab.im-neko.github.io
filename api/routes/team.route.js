@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const conf = require('../conf');
+const jwt = require('../jwt');
 const teamCtrl = require('../controllers/team.controller');
 
-// router.use( common.checkJWT );
-//router.get('/',　teamCtrl.getTeams);
+
+router.use( jwt.checkJWT );
+router.get('/',　teamCtrl.getTeams);
 
 router.get('/:id', teamCtrl.getTeamById);
 

@@ -4,8 +4,12 @@ const Schema = mongoose.Schema;
 const teamSchema = new Schema({
   idToken: {
     // slackからもらえるid
-    type: [String],
+    type: String,
     required: true,
+  },
+  domain: {
+    type:String,
+    required: true
   },
   team: {
     display_name: {
@@ -22,8 +26,10 @@ const teamSchema = new Schema({
     }
   },
   users: {
-    type: [mongoose.SchemaTypes.ObjectId],
-    required: true
+   type: [mongoose.SchemaTypes.ObjectId]
+  },
+  articles: {
+    type: [mongoose.SchemaTypes.ObjectId]
   },
   created: {
     // unixtime
@@ -37,7 +43,7 @@ const teamSchema = new Schema({
   },
   deleted: {
     type: Boolean,
-    required: false
+    required: true
   }
 });
 

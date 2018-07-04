@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const conf = require('../conf');
+const jwt = require('../jwt');
 const productCtrl = require('../controllers/product.controller');
 
-// router.use( common.checkJWT );
+router.use( jwt.checkJWT );
 router.get('/',　productCtrl.getProducts);
 
 router.get('/:id', productCtrl.getProductById);

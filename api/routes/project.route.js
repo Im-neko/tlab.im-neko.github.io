@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const conf = require('../conf');
+const jwt = require('../jwt');
 const projectCtrl = require('../controllers/project.controller');
 
-// router.use( common.checkJWT );
+router.use( jwt.checkJWT );
 router.get('/',　projectCtrl.getProjects);
 
 router.get('/:id', projectCtrl.getProjectById);

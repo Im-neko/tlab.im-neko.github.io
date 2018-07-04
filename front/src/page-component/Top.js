@@ -1,9 +1,15 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from 'react-router-dom';
+import { 
+  BrowserRouter,
+  Route, Switch 
+ } from 'react-router-dom';
 
+import  Auth from "./Auth";
 import TimeLine from "./TimeLine";
 import Login from "./Login";
 import Register from "./Register";
+import Profile from "./Profile";
+
 import Footer from "../common-component/Footer";
 import Message from "../common-component/Message";
 import Header from "../common-component/Header";
@@ -16,13 +22,18 @@ render () {
       <BrowserRouter>
         <div>
           <Header />
-          <center>
           <Message msg="β版なんやで"/>
-          <Route exact path="/" component={TimeLine} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/auth" component={Register} />
+          <Switch>
+            <Route exact path="/" component={TimeLine} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/auth" component={Register} />
+            <Auth>
+              <Switch>
+                <Route exact path="/profile" component={Profile} />
+              </Switch>
+            </Auth>
+          </Switch>
           <Footer />
-          </center>
         </div>
       </BrowserRouter>
     );

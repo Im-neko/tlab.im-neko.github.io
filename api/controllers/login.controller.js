@@ -6,12 +6,10 @@ const conf = require('../conf');
 
 exports.login = async (req, res) => {
   try {
-    if (typeof(req.body.idToken) !== 'string') return res.status(403).json({'error': 'Invalid Token'});
-    const idToken = req.body.idToken;
+    if (typeof(req.body.idToken) !== 'string') {throw [403, 'Invalid Token']}
+    const userId = req.body.userId
     console.log(idToken);
-    let user = await userModel.findOne({idToken: idToken, deleted: false}, async (err, result) => {
-      return result;
-    });
+    let user = await userModel.findOne({userI: userId, deleted: false});
     const signjwt = async (user) => {
       return await jwt.signJWT({'userId': user._id});
     };

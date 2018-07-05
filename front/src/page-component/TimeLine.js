@@ -12,7 +12,7 @@ import Loader from "../common-component/Loader";
 export default class extends Component {
   constructor(props) {
     super(props);
-    this.state = {datas: [], loader: true}
+    this.state = {loader: true}
     this.auth = new AuthService()
   }
 

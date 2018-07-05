@@ -13,6 +13,7 @@ exports.getUsers = async (req, res) => { // {{{
       .skip((page - 1) * limit)
       .limit(limit);
     if (!data.length) {throw [404, 'no users']}
+    delete data.teamIds
     res.json({message: 'success', data: {users: data}, error: null});
   } catch (e) {
     console.error(e);
@@ -42,6 +43,7 @@ exports.postUser = async (req, res) => { // {{{
     const body = req.body;
     const date = new Date().getTime();
     body.teamIds = body.teamIds.map(id => ObjectId(id))
+    body.user.profile = req.body.user.profile || ""
     body.idToken = [req.body.idToken];
     body.created = date;
     body.updated = date;

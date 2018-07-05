@@ -6,7 +6,6 @@ import {
 
 import  Auth from "./Auth";
 import TimeLine from "./TimeLine";
-import Login from "./Login";
 import Register from "./Register";
 import Profile from "./Profile";
 
@@ -25,7 +24,6 @@ render () {
           <Message msg="β版なんやで"/>
           <Switch>
             <Route exact path="/" component={TimeLine} />
-            <Route exact path="/login" component={Login} />
             <Route exact path="/auth" component={Register} />
             <Auth>
               <Switch>

@@ -12,7 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import AuthService from "../service/AuthService";
-
+import "../css/main.css";
 
 const styles = {
   root: {
@@ -41,7 +41,6 @@ class MenuAppBar extends Component {
     this.auth = new AuthService();
   }
 
-
   handleMenu = (event) => {
     this.setState({ anchorEl: event.currentTarget });
   };
@@ -50,6 +49,9 @@ class MenuAppBar extends Component {
     this.setState({ anchorEl: null });
   };
 
+  goTeam () {
+    window.location = '/team'
+  }
 
   render() {
     const { classes } = this.props;
@@ -109,7 +111,7 @@ class MenuAppBar extends Component {
                     onClose={this.handleClose}
                   >
                     <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                    <MenuItem onClick={this.goTeam}>My Team</MenuItem>
                     <MenuItem onClick={this.auth.logout}>Logout</MenuItem>
                   </Menu>
                 </div>

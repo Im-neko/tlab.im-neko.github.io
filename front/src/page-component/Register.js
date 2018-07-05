@@ -5,15 +5,12 @@ import Button from '@material-ui/core/Button';
 
 import AuthService from "../service/AuthService";
 import * as env from "../environment/environment";
+import '../css/main.css';
 
 
 const style = {
-  margin: 12,
-  icon: {
-    width: "48px",
-    height: "48px"
-  }
-};
+  margin: 12
+}
 
 export default class extends Component {
   constructor(props) {
@@ -38,11 +35,12 @@ export default class extends Component {
         this.setState({
           'team': data.team, 
           'user': data.user, 
-          'teamId': decoded.teamId,
-          'userId': decoded.userId,
+          'teamId': ''+decoded.teamId,
+          'userId': ''+decoded.userId,
           'jwtoken': data.jwtoken,
           'isLogin': this.auth.isLogin()
         });
+        console.log('signup',this.state)
       } else {
         this.setState({
           'team': JSON.parse(localStorage.getItem('team')),
@@ -52,6 +50,7 @@ export default class extends Component {
           'jwtoken': this.auth.getToken(),
           'isLogin': this.auth.isLogin()
         });
+        console.log('login', this.state)
       }
     } catch(e) {
       if(env.debug){console.error(e);}
@@ -73,15 +72,16 @@ export default class extends Component {
       }
       let res = await this.auth.post(path, data);
       console.log(res)
-      this.setState('teamId', res.data.teamId);
+      this.setState({'teamId': res.data.teamId});
+      window.location.reload();
       if(env.debug){console.log(res);}
     } catch (e) {
       if(env.debug){console.error('error: ', e);}
       if(e.status===403 && e.body.error==='already exists'){
-        this.setState({teamId: e.body.data.teamId});
         localStorage.setItem('teamId', e.body.data.teamId);
-        this.setState({teamCreateMsg: e.body.error});
+        this.setState({teamId: e.body.data.teamId});
       }
+        this.setState({teamCreateMsg: e.body.error});
     }
   }
 
@@ -93,22 +93,24 @@ export default class extends Component {
         user: {
           display_name: this.state.user.name,
           icon: this.state.user.image_1024,
+          profile: ""
         },
         teamIds: [this.state.teamId],
         jwtoken: this.state.jwtoken
       }
       let res = await this.auth.post(path, data);
       console.log(res)
-      this.setState('userId', res.userId);
+      this.setState({'userId': res.data.userId});
+      window.location.reload();
       if(env.debug){console.log(res);}
     } catch (e) {
       console.log('error: ', e);
       if(env.debug){console.error(e);}
       if(e.status===403 && e.body.error==='already exists'){
-        this.setState({userId: e.body.data.userId});
         localStorage.setItem('teamId', e.body.data.userId);
-        this.setState({userCreateMsg: e.body.error});
+        this.setState({userId: e.body.data.userId});
       }
+        this.setState({userCreateMsg: e.body.error});
     }
   }
 
@@ -117,7 +119,7 @@ export default class extends Component {
     if (this.state.teamId==='false' && this.state.team && this.auth.isLogin()){
       return (
         <div className="signup_team">
-          <img src={this.state.team.image_original} className={style.icon} alt="teamImg" />
+          <img src={this.state.team.image_original} className="icon" alt="teamImg" />
           {this.state.team.name}
           <div className="register_msg">
             はまだチームとして存在しません．<br />
@@ -130,6 +132,7 @@ export default class extends Component {
           >
           チームを作成する
           </Button>
+          <br />
           {this.state.temeCreateMsg}
           
         </div>
@@ -137,9 +140,9 @@ export default class extends Component {
     } else if(this.state.userId==='false' && this.state.user && this.auth.isLogin()) {
       return (
         <div className="signup_user">
-          <img src={this.state.user.image_1024} className={style.icon} alt="teamImg" />
+          <img src={this.state.user.image_1024} className="icon" alt="teamImg" />
           {this.state.user.name}は
-          <img src={this.state.team.image_original} className={style.icon} alt="teamImg"/>
+          <img src={this.state.team.image_original} className="icon" alt="teamImg"/>
           {this.state.team.name}
           <div className="register_msg">
             のメンバーとしてまだ存在していません．
@@ -152,6 +155,7 @@ export default class extends Component {
           >
           メンバーとして参加する
           </Button>
+          <br />
           {this.state.userCreateMsg}
         </div>
       ); 

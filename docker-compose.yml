@@ -18,7 +18,7 @@ services:
       args:
         env: "$ENV"
       context: .
-      dockerfile: front/Dockerfile
+      dockerfile: front/Dockerfile-no-build
     volumes:
       - ./front:/src
     ports:

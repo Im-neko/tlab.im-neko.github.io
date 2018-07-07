@@ -3,7 +3,7 @@ const conf = require('./conf');
 let mongoUri = '';
 
 if (process.env.ENV === 'dev') {
-  mongoUri = 'mongodb://ssh.im-neko.net:27018/dev-tlab';
+  mongoUri = 'mongodb://ssh.im-neko.net:27019/dev-tlab';
 } else {
   mongoUri = 'mongodb://user:nekoneko2255tlabportal@mongodb:27018/tlab';
 }

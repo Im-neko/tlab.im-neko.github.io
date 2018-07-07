@@ -36,7 +36,6 @@ exports.getAuthBySlack = async (req, res) => {
     let teamflag = await teamModel.findOne({idToken: result.team.id, deleted: false});
     let userflag = await userModel.findOne({idToken: {$in: [result.user.id]}, deleted: false});
     const jwtoken = jwt.signJWT({userId: userflag || false, teamId: teamflag || false});
-    //const jwtoken = jwt.signJWT({userId: result.user.id, teamId: result.team.id});
     const data = { 
       user: result.user,
       team: result.team,

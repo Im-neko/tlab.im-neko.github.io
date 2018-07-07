@@ -13,7 +13,7 @@ conf.js
 /sample-react-project/node_module
 /sample-react-project/build
 /.git
-
+data
 
 # Created by https://www.gitignore.io/api/go,vim,node,linux,emacs,macos
 

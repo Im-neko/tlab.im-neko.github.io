@@ -5,13 +5,13 @@ let mongoUri = '';
 if (process.env.ENV === 'dev') {
   mongoUri = 'mongodb://ssh.im-neko.net:27018/dev-tlab';
 } else {
-  mongoUri = 'mongodb://ssh.im-neko.net:27018/tlab';
+  mongoUri = 'mongodb://user:nekoneko2255tlabportal@mongodb:27018/tlab';
 }
 
 mongoose.Promise = global.Promise;
 
 // connect to mongo db
-mongoose.connect(mongoUri)
+mongoose.connect(mongoUri, )
   .then(console.log('connected to mongoDB'));
 
 mongoose.connection.on('error', () => {

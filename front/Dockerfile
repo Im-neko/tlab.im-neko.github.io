@@ -23,15 +23,14 @@ ARG NGINX_CONF
 
 FROM nginx:1.13.3-alpine
 
+RUN mkdir -p /root/www
+
 ## Copy our default nginx config
 COPY ./front/nginx/$NGINX_CONF /etc/nginx/conf.d/
 
-## Remove default nginx website
-RUN rm -rf /usr/share/nginx/html/*
-
 ## Copy build files
-COPY --from=builder /myapp/build /usr/share/nginx/hgml
+COPY --from=builder /myapp/build /root/www
 
-RUN chmod 755 -R /usr/share/nginx/html
+RUN chmod 755 -R /root
 
 CMD ["nginx", "-g", "daemon off;"]

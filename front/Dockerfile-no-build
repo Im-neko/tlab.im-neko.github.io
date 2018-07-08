@@ -6,12 +6,9 @@ FROM nginx:1.13.3-alpine
 ## Copy our default nginx config
 COPY ./front/nginx/$NGINX_CONF /etc/nginx/conf.d/
 
-## Remove default nginx website
-RUN rm -rf /usr/share/nginx/html/*
-
 ## Copy build files
-COPY ./front/build /usr/share/nginx/html
+COPY ./front/build /root/www
 
-RUN chmod 755 -R /usr/share/nginx/html
+RUN chmod 755 -R /root
 
 CMD ["nginx", "-g", "daemon off;"]

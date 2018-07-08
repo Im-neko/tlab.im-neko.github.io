@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 const conf = require('./conf');
 let mongoUri = '';
 
-if (process.env.ENV === 'dev') {
+if (process.env.ENV === 'development') {
   mongoUri = 'mongodb://ssh.im-neko.net:27019/dev-tlab';
 } else {
+  console.log('prod bode')
   mongoUri = 'mongodb://user:nekoneko2255tlabportal@mongodb:27018/tlab';
 }
 

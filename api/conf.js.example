@@ -1,4 +1,4 @@
-if (process.env.NODE_ENV === 'development') {
+if (process.env.APP_ENV === 'development') {
     console.log('dev mode');
     exports.dbHost="127.0.0.1";
     exports.dbPort=27018;

@@ -4,19 +4,19 @@ services:
   mongodb:
     image: mongo:latest
     container_name: mongodb
-    environment:
-      - 'MONGODB_USER=user'
-      - 'MONGODB_PASS=nekoneko2255tlabportal'
     ports:
       - "$MONGO_PORT:27017"
     volumes:
       - ./data/db:/data/db
-    command: mongod
+      - ./mongo/init/:/docker-entrypoint-initdb.d/
+    environment:
+      - MONGO_INITDB_DATABASE=tlab
 
   front:
     build:
       args:
-        env: "$ENV"
+        REACT_APP_ENV: "$ENV"
+        REACT_APP_REDIRECT_URI: "$SLACK_REDIRECT_URI"
       context: .
       dockerfile: front/Dockerfile
     volumes:
@@ -26,12 +26,15 @@ services:
 
   api:
     build:
+      args:
+        APP_ENV: "$ENV"
+        SLACK_REDIRECT_URI: "$SLACK_REDIRECT_URI"
+        MONGO_URI: "$MONGO_URI"
       context: .
       dockerfile: api/Dockerfile
     links:
       - mongodb
     ports:
-      - "$API_PORT:80"
+      - "$API_PORT:3000"
     volumes:
       - ./api:/src
-

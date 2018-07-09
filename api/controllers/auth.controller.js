@@ -27,7 +27,8 @@ exports.getAuthBySlack = async (req, res) => {
     const query = {
       client_id: conf.slack_client_id,
       client_secret: conf.slack_client_secret,
-      code: code
+      code: code,
+      redirect_uri: conf.slack_redirect_uri
     }
     let result = await get_request('https://slack.com/api/oauth.access', query);
     console.log('data: ',result);

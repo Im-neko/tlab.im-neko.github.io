@@ -1,18 +1,12 @@
 const mongoose = require('mongoose');
 const conf = require('./conf');
-let mongoUri = '';
 
-if (process.env.ENV === 'development') {
-  mongoUri = 'mongodb://ssh.im-neko.net:27019/dev-tlab';
-} else {
-  console.log('prod bode')
-  mongoUri = 'mongodb://user:nekoneko2255tlabportal@mongodb:27018/tlab';
-}
+const mongoUri = process.env.MONGO_URI;
 
 mongoose.Promise = global.Promise;
 
 // connect to mongo db
-mongoose.connect(mongoUri, )
+mongoose.connect(mongoUri, { useNewUrlParser: true })
   .then(console.log('connected to mongoDB'));
 
 mongoose.connection.on('error', () => {

@@ -15,8 +15,9 @@ WORKDIR /myapp
 COPY ./front .
 
 ## Build the angular app in production mode and store the artifacts in dist folder
-RUN $(npm bin)/react-scripts build
-
+ARG REACT_APP_ENV
+ARG REACT_APP_REDIRECT_URI
+RUN $(npm bin)/react-scripts build 
 
 ### STAGE 2: Setup ###
 ARG NGINX_CONF

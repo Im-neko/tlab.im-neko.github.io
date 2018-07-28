@@ -62,12 +62,7 @@ export default class AuthService {
 
 
     fetch(url, options) {
-        // performs api calls sending the required authentication headers
-        const headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-
+        var headers = {}
         // Setting Authorization header
         if (this.isLogin()) {
             headers['x-access-token'] = this.getToken()
@@ -75,8 +70,11 @@ export default class AuthService {
 
         return new Promise((resolve, reject) => {
             fetch(url, {
-                headers,
-                ...options
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'mode': 'cors',
+                ...options,
+                ...headers
             })
                 .then(this._checkStatus)
                 .then(response => resolve(response.json())) 

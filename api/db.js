@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const conf = require('./conf');
 
-const mongoUri = process.env.MONGO_URI;
+const mongoUri = conf.mongo_uri;
 
 mongoose.Promise = global.Promise;
 

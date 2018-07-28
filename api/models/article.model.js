@@ -15,6 +15,10 @@ const articleSchema = new Schema({
     // articleId
     type: [mongoose.SchemaTypes.ObjectId]
   },
+  title: {
+    type: String,
+    required: true
+  },
   text: {
     type: String,
     required: true

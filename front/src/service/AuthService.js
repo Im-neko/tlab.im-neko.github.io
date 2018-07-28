@@ -81,8 +81,12 @@ export default class AuthService {
                 .then(this._checkStatus)
                 .then(response => resolve(response.json())) 
                 .catch(async (e) => {
-                    const body = await e.json()
-                    reject({status: e.status, body: body})
+                    try{
+                        const body = await e.json()
+                        reject({status: e.status, body: body})
+                    } catch(e) {
+                        reject(e)
+                    }
                 })
         });
     }

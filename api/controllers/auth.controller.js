@@ -30,10 +30,11 @@ exports.getAuthBySlack = async (req, res) => {
       code: code,
       redirect_uri: conf.slack_redirect_uri
     }
+    console.log('redirect_uri: ', conf.slack_redirect_uri);
     let result = await get_request('https://slack.com/api/oauth.access', query);
     console.log('data: ',result);
     result = JSON.parse(result);
-    if (!result.ok) {throw [403, 'code_already_used']}
+    if (!result.ok) {throw [403, result.error]}
     let teamflag = await teamModel.findOne({idToken: result.team.id, deleted: false});
     let userflag = await userModel.findOne({idToken: {$in: [result.user.id]}, deleted: false});
     const jwtoken = jwt.signJWT({userId: userflag || false, teamId: teamflag || false});

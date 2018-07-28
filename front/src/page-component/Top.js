@@ -8,9 +8,9 @@ import  Auth from "./Auth";
 import TimeLine from "./TimeLine";
 import Register from "./Register";
 import Profile from "./Profile";
+import Article from "./Article";
+import PostArticle from "./PostArticle";
 
-import Footer from "../common-component/Footer";
-import Message from "../common-component/Message";
 import Header from "../common-component/Header";
 
 
@@ -21,17 +21,17 @@ render () {
       <BrowserRouter>
         <div>
           <Header />
-          <Message msg="β版なんやで"/>
           <Switch>
             <Route exact path="/" component={TimeLine} />
             <Route exact path="/auth" component={Register} />
             <Auth>
               <Switch>
                 <Route exact path="/profile" component={Profile} />
+                <Route exact path="/article/:id" component={Article} />
+                <Route exact path="/post/article" component={PostArticle} />
               </Switch>
             </Auth>
           </Switch>
-          <Footer />
         </div>
       </BrowserRouter>
     );

@@ -20,6 +20,7 @@ const styles = {
   },
   flex: {
     flex: 1,
+    cursor: "pointer"
   },
   menuButton: {
     marginLeft: -12,
@@ -67,7 +68,7 @@ class MenuAppBar extends Component {
               <IconButton className={classes.menuButton} color="primary" aria-label="Top">
               <font color="#20d9a8">■</font>
               </IconButton>
-              <Typography variant="title" className={classes.flex}>
+              <Typography variant="title" className={classes.flex} onClick={(()=>{window.location='/'})}>
                 TakedaLab.
               </Typography>
               <TextField
@@ -84,7 +85,9 @@ class MenuAppBar extends Component {
                 <div>
                   <Button
                     variant="raised"
-                    color="primary">
+                    color="primary"
+                    href={'/post/article'}
+                    >
                       POST
                   </Button>
                   鐘
@@ -127,7 +130,7 @@ class MenuAppBar extends Component {
               <IconButton className={classes.menuButton} color="primary" aria-label="Top">
               <font color="#20d9a8">■</font>
               </IconButton>
-              <Typography variant="title" className={classes.flex}>
+              <Typography variant="title" className={classes.flex} onClick={(()=>{window.location='/'})} type="button" >
                 TakedaLab.
               </Typography>
               <TextField
@@ -142,12 +145,6 @@ class MenuAppBar extends Component {
                 }}
               />
                 <div>
-                  <Button
-                    variant="raised"
-                    color="primary">
-                      POST
-                  </Button>
-                  鐘
                   <IconButton
                     aria-owns={open ? 'menu-appbar' : null}
                     aria-haspopup="true"

@@ -8,6 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import AuthService from "../service/AuthService";
 // import * as env from "../environment/environment";
 import Loader from "../common-component/Loader";
+import Footer from "../common-component/Footer";
 
 export default class extends Component {
   constructor(props) {
@@ -25,10 +26,10 @@ export default class extends Component {
     try {
       const path = 'timeline'
       const res = await this.auth.get(path, {limit:10, page:1});
-      this.setState({users: res.data.users})
+      this.setState({datas: res.data.articles})
     } catch(e) {
       console.log(e)
-      this.setState({message: 'error'})
+      this.setState({message: 'error'});
     }
   }
 
@@ -40,33 +41,35 @@ export default class extends Component {
         </div>
       );
     } else {
-      let user_data = []
-      for (var i in this.state.users) {
-        const user_icon = this.state.users[i].icon;
-        const user_name = this.state.users[i].display_name;
-        const user_profile = this.state.users[i].profile || "no profile";
-        user_data.push(
-          <div className="user_container" key={user_name+'_'+i}>
+      let datas = []
+      for (var i in this.state.datas) {
+        const icon = this.state.datas[i].icon;
+        const title = this.state.datas[i].title;
+        const author = this.state.datas[i].author;
+        datas.push(
+          <div className="user_container" key={'articleCard_'+i}>
             <li>
               <Divider inset />
             </li>
             <ListItem>
               <Avatar>
-                <img src={user_icon} className="icon" alt="user_icon" />
+                <img src={icon} className="icon" alt="user_icon" />
               </Avatar>
-              <ListItemText primary={user_name} secondary={user_profile} />
+              <ListItemText primary={title} secondary={author} />
             </ListItem>
+            <Footer />
           </div>
         );
       }
       return (
         <div className="timeline_container">
         <List>
-          {user_data}
+          {datas}
           <li>
             <Divider inset />
           </li>
         </List>
+        <Footer />
         </div>
       );
     }

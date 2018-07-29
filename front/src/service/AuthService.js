@@ -80,7 +80,7 @@ export default class AuthService {
             .then(this._checkStatus)
             .then(response => resolve(response.json())) 
             .catch(async (e) => {
-                reject({status: e.json? e.status: e, body: e.json? e.json(): e})
+                reject({status: e.json? e.status: e, body: e.json? await e.json(): e})
             })
         });
     }

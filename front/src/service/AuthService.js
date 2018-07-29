@@ -6,7 +6,6 @@ export default class AuthService {
     // Initializing important variables
     constructor(domain) {
         this.domain = domain || env.api_host // API server domain
-        this.fetch = this.fetch.bind(this) // React binding stuff
     }
 
     Login() {
@@ -62,30 +61,27 @@ export default class AuthService {
 
 
     fetch(url, options) {
-        var headers = {}
+        var headers = {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json',
+        }
         // Setting Authorization header
         if (this.isLogin()) {
             headers['x-access-token'] = this.getToken()
         }
 
+        console.log(headers)
         return new Promise((resolve, reject) => {
             fetch(url, {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'mode': 'cors',
+                mode: 'cors',
                 ...options,
-                ...headers
+                headers: new Headers(headers)
             })
-                .then(this._checkStatus)
-                .then(response => resolve(response.json())) 
-                .catch(async (e) => {
-                    try{
-                        const body = await e.json()
-                        reject({status: e.status, body: body})
-                    } catch(e) {
-                        reject(e)
-                    }
-                })
+            .then(this._checkStatus)
+            .then(response => resolve(response.json())) 
+            .catch(async (e) => {
+                reject({status: e.json? e.status: e, body: e.json? e.json(): e})
+            })
         });
     }
 
@@ -100,9 +96,9 @@ export default class AuthService {
     get(path, query) {
         const queryString = this.json2query(query);
         return new Promise((resolve, reject) => {
-            this.fetch(`${this.domain}${path}${queryString}`, {
-                method: 'GET'
-            }).then(res => {
+            this.fetch(`${this.domain}${path}${queryString}`, 
+                {method: 'GET'})
+            .then(res => {
                 return resolve(res);
             }).catch(e => reject(e))
         });

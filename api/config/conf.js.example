@@ -1,15 +1,15 @@
 if (process.env.APP_ENV !== 'production') {
     console.log('dev mode');
-    exports.jwtPubkey = "../../keys/jwt.key.pub"
-    exports.jwtPrikey = "../../keys/jwt.key"
+    exports.jwtPubkey = "./keys/jwt.key.pub"
+    exports.jwtPrikey = "./keys/jwt.key"
     exports.slack_client_id = "";
     exports.slack_client_secret = "";
     exports.debug = true;
     exports.mongo_uri = ''
     exports.slack_redirect_uri = "http://localhost:3001/auth";
   }else{
-    exports.jwtPubkey = "../../keys/jwt.key.pub"
-    exports.jwtPrikey = "../../keys/jwt.key"
+    exports.jwtPubkey = "./keys/jwt.key.pub"
+    exports.jwtPrikey = "./keys/jwt.key"
     exports.slack_client_id = "";
     exports.slack_client_secret = "";
     exports.debug = false;

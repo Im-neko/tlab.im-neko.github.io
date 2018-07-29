@@ -3,8 +3,6 @@ FROM node:9.11.2
 RUN useradd --user-group --create-home --shell /bin/false app &&\
   npm install --global forever
 
-COPY ./keys /var/keys
-
 WORKDIR /src
 
 ARG APP_ENV 

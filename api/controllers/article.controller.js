@@ -4,9 +4,10 @@ const ObjectId = require("mongoose").Types.ObjectId;
 
 exports.getArticles = async (req, res) => {
   try{
+    const teamId = req.decoded.teamId;
     const limit = parseInt(req.query.limit, 10);
     const page = parseInt(req.query.page, 10);
-    const data = await articleModel.find({})
+    const data = await articleModel.find({teamId: ObjectId(teamId), deleted: false})
       .sort('-created')// 降順、最新順ソート
       .skip((page - 1) * limit)
       .limit(limit);
@@ -20,8 +21,9 @@ exports.getArticles = async (req, res) => {
 
 exports.getArticleById = async (req, res) => {
   try{
+    const teamId = req.decoded.teamId;
     const articleId = req.params.id;
-    const data = await articleModel.findOne({_id: ObjectId(articleId)});
+    const data = await articleModel.findOne({teamId: ObjectId(teamId), _id: ObjectId(articleId), deleted: false});
     if (!data) {throw [404, 'no articles']}
     res.json({message: 'success', data: {article: data}, error: null});
   } catch (e) {

@@ -6,7 +6,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
 
 import AuthService from "../service/AuthService";
-// import * as env from "../environment/environment";
+import * as env from "../environment/environment";
 import Loader from "../common-component/Loader";
 import Footer from "../common-component/Footer";
 
@@ -28,7 +28,7 @@ export default class extends Component {
       const res = await this.auth.get(path, {limit:10, page:1});
       this.setState({datas: res.data.articles})
     } catch(e) {
-      console.log(e)
+      if(env.debug){console.log(e)};
       this.setState({message: 'error'});
     }
   }
@@ -45,13 +45,14 @@ export default class extends Component {
       for (var i in this.state.datas) {
         const icon = this.state.datas[i].icon;
         const title = this.state.datas[i].title;
-        const author = this.state.datas[i].author;
+        const author = this.state.datas[i].display_name;
+        const articleId = this.state.datas[i]._id;
         datas.push(
           <div className="user_container" key={'articleCard_'+i}>
             <li>
               <Divider inset />
             </li>
-            <ListItem>
+            <ListItem onClick={(()=>window.location='/article/'+articleId)} style={{cursor: "pointer"}}>
               <Avatar>
                 <img src={icon} className="icon" alt="user_icon" />
               </Avatar>

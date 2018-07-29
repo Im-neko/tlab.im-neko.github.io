@@ -3,7 +3,7 @@ import SimpleMDE from 'react-simplemde-editor';
 import "simplemde/dist/simplemde.min.css";
 import './css/Editor.css';
 
-const defaultText ='# Title\n ## introduction\n - item1\n - item2\n ```js\n function main() {\n   console.log("HelloWorld!")\n }\n ```\n';
+const defaultText ='# Title\n ## introduction\n - item1\n - item2\n';
 
 export default class extends Component {
     constructor(props) {
@@ -12,7 +12,7 @@ export default class extends Component {
     }
 
     onChangeText (value) {
-        this.setState({mdeValue: value})
+        this.props.setText(value);
     }
 
     render () {

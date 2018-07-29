@@ -1,31 +1,21 @@
 import React, {Component} from 'react';
 
-
 import AuthService from "../service/AuthService";
-// import * as env from "../environment/environment";
 import Loader from "../common-component/Loader";
 
 export default class extends Component {
   constructor(props) {
     super(props);
     this.state = {loader: true}
-    this.auth = new AuthService()
+    this.auth = new AuthService();
   }
 
   async componentWillMount () {
-    await this.getTimeLine();
+    const {params} = this.props.match;
+    this.articleId = params.id;
+    const res = await this.auth.get('articles/'+this.articleId, '');
+    this.setState({data: res.data.article});
     this.setState({loader: false});
-  }
-
-  async getTimeLine() {
-    try {
-      const path = 'article'
-      const res = await this.auth.get(path, {limit:10, page:1});
-      this.setState({users: res.data.articles})
-    } catch(e) {
-      console.log(e)
-      this.setState({message: 'error'})
-    }
   }
 
   render () {
@@ -38,7 +28,7 @@ export default class extends Component {
     } else {
       return (
         <div className="article_container">
-
+          {this.state.data.text}
         </div>
       );
     }

@@ -9,11 +9,23 @@ import Editor from "../common-component/Editor";
 export default class extends Component {
   constructor(props) {
     super(props);
-    this.state = {loader: false}
+    this.state = {loader: false, text: '# Title\n ## introduction\n - item1\n - item2\n'}
     this.auth = new AuthService()
   }
 
-  async componentWillMount () {
+  async postArticle () {
+    console.log(this.state);
+    const title = this.state.text.split('\n')
+    const data = {
+      title: title[0] || title[1],
+      text: this.state.text
+    }
+    const res = await this.auth.post('articles', data);
+    console.log(res);
+  }
+
+  setText (text) {
+    this.setState({'text': text});
   }
 
   render () {
@@ -29,11 +41,11 @@ export default class extends Component {
           <div id="page_header">
             Post Article
           </div>
-          <Editor />
+          <Editor setText={this.setText.bind(this)}/>
           <Button
             variant="raised"
             color="primary"
-            href={'/post/article'}
+            onClick={this.postArticle.bind(this)}
             >
               POST
           </Button>

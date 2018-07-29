@@ -70,7 +70,6 @@ export default class AuthService {
             headers['x-access-token'] = this.getToken()
         }
 
-        console.log(headers)
         return new Promise((resolve, reject) => {
             fetch(url, {
                 mode: 'cors',

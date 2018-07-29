@@ -7,22 +7,22 @@ exports.getTimeLineByTeam = async (req, res) => { // {{{
   try{
     const limit = parseInt(req.query.limit, 10);
     const page = parseInt(req.query.page, 10);
-    let data = await articleModel.find({deleted: false})
+    let resD = await articleModel.find({deleted: false})
       .sort('-created')// 降順、最新順ソート
       .skip((page - 1) * limit)
       .limit(limit);
     let user = {};
-    Object.keys(data).forEach(async (key) => {
-      if(data[key].userId in user){
-        data[key].icon = user._id.icon;
-        data[key].author = user._id.display_name;
+    let data = []
+    for (var i in resD) {
+      let bufData = resD[i]._doc;
+      if(resD[i].userId in user){
+        data.push({...bufData, ...user[bufData.userId]});
       }else{
-        let userdata = await userModel.findOne({_id: ObjectId(article.userId), deleted: false});
-        data[key].icon = userdata.icon;
-        data[key].author = userdata.user.display_name;
-        user._id  = userdata.user;
+        let userdata = await userModel.findOne({_id: ObjectId(resD[i].userId), deleted: false});
+        user[userdata._id]  = userdata.user;
+        data.push({...bufData, ...userdata.user});
       }
-    });
+    }
     if (!data.length) {throw [404, 'no data']}
     res.json({message: 'success', data: {articles: data}, error: null});
   } catch (e) {

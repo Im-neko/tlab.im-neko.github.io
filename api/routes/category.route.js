@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const jwt = require('../jwt');
+const jwt = require('../config/jwt');
 const categoryCtrl = require('../controllers/category.controller');
 
 router.use( jwt.checkJWT );

@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const request = require('request');
 const fs = require('fs');
 
 const conf = require('./conf');

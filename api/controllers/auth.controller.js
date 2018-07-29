@@ -2,8 +2,8 @@ const request = require('request');
 
 const teamModel = require("../models/team.model");
 const userModel = require("../models/user.model");
-const jwt = require('../jwt');
-const conf = require('../conf');
+const jwt = require('../config/jwt');
+const conf = require('../config/conf');
 
 const get_request = (url, query) => {
   return new Promise((resolve, reject) => {

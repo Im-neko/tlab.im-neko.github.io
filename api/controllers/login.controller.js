@@ -1,8 +1,5 @@
-const firebase = require('firebase-admin')
-
 const userModel = require("../models/user.model");
-const jwt = require('../jwt');
-const conf = require('../conf');
+const jwt = require('../config/jwt');
 
 exports.login = async (req, res) => {
   try {

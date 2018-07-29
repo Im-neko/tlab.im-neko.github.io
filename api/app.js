@@ -9,8 +9,7 @@ const expressValidation = require('express-validation');
 const APIError = require('./helpers/APIError');
 
 
-const conf = require("./conf");
-const jwt = require("./jwt");
+const jwt = require("./config/jwt");
 const teapot  = require("./routes/teapot.route");
 const login  = require("./routes/login.route");
 const tags = require("./routes/team.route");

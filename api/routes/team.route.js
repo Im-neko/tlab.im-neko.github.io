@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const jwt = require('../jwt');
+const jwt = require('../config/jwt');
 const teamCtrl = require('../controllers/team.controller');
 
 

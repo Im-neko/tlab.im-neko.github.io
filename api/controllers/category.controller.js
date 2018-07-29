@@ -1,5 +1,3 @@
-const jwt = require("../jwt");
-const conf = require("../conf");
 const categoryModel = require("../models/category.model");
 const ObjectId = require("mongoose").Types.ObjectId;
 

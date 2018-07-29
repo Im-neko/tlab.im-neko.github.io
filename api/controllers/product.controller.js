@@ -1,4 +1,3 @@
-const conf = require("../conf");
 const productModel = require("../models/product.model");
 const ObjectId = require("mongoose").Types.ObjectId;
 

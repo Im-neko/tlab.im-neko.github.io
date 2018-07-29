@@ -1,18 +1,18 @@
-if (process.env.APP_ENV === 'development') {
+if (process.env.APP_ENV !== 'production') {
     console.log('dev mode');
-    exports.dbHost="127.0.0.1";
-    exports.dbPort=27018;
-    exports.jwtPubkey = "../keys/jwt.key.pub"
-    exports.jwtPrikey = "../keys/jwt.key"
-    exports.client_id = "";
-    exports.client_secret = "";
+    exports.jwtPubkey = "../../keys/jwt.key.pub"
+    exports.jwtPrikey = "../../keys/jwt.key"
+    exports.slack_client_id = "";
+    exports.slack_client_secret = "";
+    exports.debug = true;
+    exports.mongo_uri = ''
+    exports.slack_redirect_uri = "http://localhost:3001/auth";
   }else{
-    console.log('prod mode');
-    // 今はAPIサーバ建てて無いので一旦ダミー
-    exports.dbHost="127.0.0.1";
-    exports.dbPort=27018;
-    exports.jwtPubkey = "../keys/jwt.key.pub"
-    exports.jwtPrikey = "../keys/jwt.key"
-    exports.client_id = "";
-    exports.client_secret = "";
+    exports.jwtPubkey = "../../keys/jwt.key.pub"
+    exports.jwtPrikey = "../../keys/jwt.key"
+    exports.slack_client_id = "";
+    exports.slack_client_secret = "";
+    exports.debug = false;
+    exports.mongo_uri = "";
+    exports.slack_redirect_uri = process.env.SLACK_REDIRECT_URI;
   }

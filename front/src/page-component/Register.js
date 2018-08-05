@@ -40,7 +40,6 @@ export default class extends Component {
           'jwtoken': data.jwtoken,
           'isLogin': this.auth.isLogin()
         });
-        console.log('signup',this.state)
       } else {
         this.setState({
           'team': JSON.parse(localStorage.getItem('team')),
@@ -50,7 +49,6 @@ export default class extends Component {
           'jwtoken': this.auth.getToken(),
           'isLogin': this.auth.isLogin()
         });
-        console.log('login', this.state)
       }
     } catch(e) {
       if(env.debug){console.error(e);}
@@ -70,7 +68,6 @@ export default class extends Component {
         }
       }
       let res = await this.auth.post(path, data);
-      console.log('team res: ', res)
       this.setState({'teamId': res.data.teamId, 'jwtoken': res.data.jwtoken});
       localStorage.setItem('teamId', res.data.teamId);
       await this.auth.setToken(res.data.jwtoken);
@@ -100,7 +97,6 @@ export default class extends Component {
         teamId: this.state.teamId,
       }
       let res = await this.auth.post(path, data);
-      console.log(res)
       this.setState({'userId': res.data.userId, 'jwtoken': res.data.jwtoken});
       localStorage.setItem('userId', res.data.userId);
       this.auth.setToken(res.data.jwtoken);

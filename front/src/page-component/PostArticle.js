@@ -21,7 +21,11 @@ export default class extends Component {
       text: this.state.text
     }
     const res = await this.auth.post('articles', data);
-    console.log(res);
+    if(res.message==='success'){
+      window.location='/';
+    }else{
+      alert('投稿に失敗しました。 何度試してもダメなようであれば管理者に内容と共に症状を連絡してください。');
+    }
   }
 
   setText (text) {

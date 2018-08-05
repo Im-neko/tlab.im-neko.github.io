@@ -11,7 +11,6 @@ const APIError = require('./helpers/APIError');
 
 const jwt = require("./config/jwt");
 const teapot  = require("./routes/teapot.route");
-const login  = require("./routes/login.route");
 const tags = require("./routes/team.route");
 const users = require("./routes/user.route");
 const articles = require("./routes/article.route");
@@ -70,7 +69,6 @@ app.use(
 // jwt authorize
 app.use(jwt.decodeJWT);
 app.use("/v1/auth", auth);
-app.use("/v1/login", login);
 app.use("/v1/teapot", teapot);
 app.use("/v1/teams", team);
 app.use("/v1/users", users);

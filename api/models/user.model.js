@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   idToken: {
     // 今の所slackからもらえるid
-    type: [String],
+    type: String,
     required: true,
   },
   user: {
@@ -22,7 +22,7 @@ const userSchema = new Schema({
     }
   },
   teamIds: {
-    type: [mongoose.SchemaTypes.ObjectId]
+    type: mongoose.SchemaTypes.ObjectId
   },
   created: {
     // unixtime

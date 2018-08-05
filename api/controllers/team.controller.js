@@ -1,6 +1,5 @@
 const teamModel = require("../models/team.model");
-const ObjectId = require('mongoose').Types.ObjectId;
-
+const jwt = require('../config/jwt');
 
 exports.getTeams = async (req, res) => { // {{{
   try{
@@ -33,7 +32,7 @@ exports.getTeamById = async (req, res) => { // {{{
 exports.postTeam = async (req, res) => { // {{{
   try{
     const r1 = await teamModel.findOne({
-      idToken: {$in: req.body.idToken}
+      idToken: req.body.idToken
     });
     if (r1) {throw [403, 'already exists', {teamId: r1._id}]}
     const body = req.body;
@@ -44,8 +43,10 @@ exports.postTeam = async (req, res) => { // {{{
     const team = new teamModel(body);
     const r2 = await team.save();
     if (!r2) {throw [500, 'failed to post']}
+    const jwtoken = jwt.signJWT({teamId: team._id, userId: null});
     const data = {
       teamId: team._id,
+      jwtoken: jwtoken,
       ...body
     }
     res.json({message: 'success', data: data, error: null});

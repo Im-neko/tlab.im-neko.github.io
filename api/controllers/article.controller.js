@@ -5,8 +5,8 @@ const ObjectId = require("mongoose").Types.ObjectId;
 exports.getArticles = async (req, res) => {
   try{
     const teamId = req.decoded.teamId;
-    const limit = parseInt(req.query.limit, 10);
-    const page = parseInt(req.query.page, 10);
+    const limit = parseInt(req.query.limit, 10) || 10;
+    const page = parseInt(req.query.page, 10) || 0;
     const data = await articleModel.find({teamId: ObjectId(teamId), deleted: false})
       .sort('-created')// 降順、最新順ソート
       .skip((page - 1) * limit)

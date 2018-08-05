@@ -5,7 +5,6 @@ const ObjectId = require("mongoose").Types.ObjectId;
 // not yet
 
 exports.getProducts = async (req, res) => { // {{{
-  let lang = req.query.lang || "ja";
   productModel.find({}, async (err, result) => {
     if (err) {res.status(500).json({"error": "InternalServerError"}); return;}
     if (result.length) {
@@ -21,7 +20,6 @@ exports.getProducts = async (req, res) => { // {{{
 } // }}}
 
 exports.getProductById = async (req, res) => { // {{{
-  let lang = req.query.lang || "all";
   let productId = req.params.id;
   console.log(productId);
   productModel.findOne({_id: ObjectId(productId)}, async (err, result) => {

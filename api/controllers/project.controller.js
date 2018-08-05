@@ -5,7 +5,6 @@ const ObjectId = require("mongoose").Types.ObjectId;
 // not yet
 
 exports.getProjects = async (req, res) => { // {{{
-  let lang = req.query.lang || "ja";
   projectModel.find({}, async (err, result) => {
     if (err) {res.status(500).json({"error": "InternalServerError"}); return;}
     if (result.length) {
@@ -21,7 +20,6 @@ exports.getProjects = async (req, res) => { // {{{
 } // }}}
 
 exports.getProjectById = async (req, res) => { // {{{
-  let lang = req.query.lang || "all";
   let projectId = req.params.id;
   console.log(projectId);
   projectModel.findOne({_id: ObjectId(projectId)}, async (err, result) => {

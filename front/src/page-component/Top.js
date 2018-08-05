@@ -5,7 +5,7 @@ import {
  } from 'react-router-dom';
 
 import  Auth from "./Auth";
-import TimeLine from "./TimeLine";
+import TimeLine  from "./TimeLine";
 import Register from "./Register";
 import Profile from "./Profile";
 import Article from "./Article";

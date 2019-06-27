@@ -12,6 +12,7 @@ services:
     volumes:
       - ./data/db:/data/db
       #- ./mongo/init/:/docker-entrypoint-initdb.d/
+    always: restart
 
   front:
     build:
@@ -24,6 +25,7 @@ services:
       - ./front:/src
     ports:
       - "$FRONT_PORT:80"
+    always: restart
 
   api:
     build:
@@ -39,3 +41,4 @@ services:
       - "$API_PORT:3000"
     volumes:
       - ./api:/src
+    always: restart
